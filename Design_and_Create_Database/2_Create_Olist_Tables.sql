@@ -39,11 +39,6 @@ CREATE TABLE product_category_name_dim (
     PRIMARY KEY (product_category_name, product_category_name_english)
 );
 
-
--- ==========================================
--- 2. FACT TABLES & CUSTOM TYPES
--- ==========================================
-
 CREATE TYPE order_tracking AS ENUM ('delivered','invoiced','shipped','processing','unavailable','canceled','created','approved');
 
 CREATE TABLE orders_fact (
