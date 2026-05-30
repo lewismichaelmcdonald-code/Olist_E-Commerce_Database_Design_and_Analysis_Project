@@ -54,16 +54,17 @@ SELECT
     index.cohort_month,
     cs.total_starting_customers,
     index.cohort_index,
-    SUM(order_revenue.total_order_revenue) AS total_revenue
+    SUM(order_revenue.total_order_revenue) AS total_revenue,
+    COUNT(DISTINCT index.order_id) AS total_orders 
 FROM
     index
 INNER JOIN order_revenue
     ON index.order_id = order_revenue.order_id
 INNER JOIN cohort_sizes AS cs 
-    ON index.cohort_month = cs.cohort_month 
+    ON index.cohort_month = cs.cohort_month
 GROUP BY
     index.cohort_month,
-    cs.total_starting_customers, 
+    cs.total_starting_customers,
     index.cohort_index
 ORDER BY
     index.cohort_month ASC,
